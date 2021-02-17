@@ -200,7 +200,6 @@ TARGET_NO_RPC := true
 
 BOARD_VENDOR_KERNEL_MODULES := \
     $(KERNEL_MODULES_OUT)/audio_apr.ko \
-    $(KERNEL_MODULES_OUT)/pronto_wlan.ko \
     $(KERNEL_MODULES_OUT)/audio_q6_notifier.ko \
     $(KERNEL_MODULES_OUT)/audio_adsp_loader.ko \
     $(KERNEL_MODULES_OUT)/audio_q6.ko \
@@ -226,6 +225,10 @@ BOARD_VENDOR_KERNEL_MODULES := \
     $(KERNEL_MODULES_OUT)/audio_machine_ext_sdm450.ko \
     $(KERNEL_MODULES_OUT)/mpq-adapter.ko \
     $(KERNEL_MODULES_OUT)/mpq-dmx-hw-plugin.ko \
+
+ifneq ($(strip $(TARGET_KERNEL_VERSION)), 4.19)
+BOARD_VENDOR_KERNEL_MODULES += $(KERNEL_MODULES_OUT)/pronto_wlan.ko
+endif
 
 ifeq ($(strip $(TARGET_KERNEL_VERSION)), 4.9)
     BOARD_KERNEL_CMDLINE := console=ttyMSM0,115200,n8 androidboot.console=ttyMSM0 androidboot.hardware=qcom msm_rtb.filter=0x237 ehci-hcd.park=3 lpm_levels.sleep_disabled=1 androidboot.bootdevice=7824900.sdhci earlycon=msm_serial_dm,0x78af000 androidboot.usbconfigfs=true loop.max_part=7

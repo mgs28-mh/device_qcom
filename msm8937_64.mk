@@ -18,6 +18,8 @@ else
   SHIPPING_API_LEVEL := 30
 endif
 
+TARGET_BOARD_PLATFORM := msm8937
+TARGET_BOARD_SUFFIX := _64
 ifeq (true,$(call math_gt_or_eq,$(SHIPPING_API_LEVEL),30))
 # Enable incremental FS feature
 PRODUCT_PROPERTY_OVERRIDES += ro.incremental.enable=1
